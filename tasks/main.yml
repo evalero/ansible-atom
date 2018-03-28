@@ -1,0 +1,49 @@
+---
+- name: Include OS-specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    "{{ ansible_os_family }}.yml"
+
+- name: Ensure apt-transport-https is installed
+  package:
+    name: apt-transport-https
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Add atom gpg-key for Debian distros
+  become: True
+  apt_key:
+    url: "{{ gpg_key }}"
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Add atom gpg-key for Red Hat distros
+  become: True
+  rpm_key:
+    key: "{{ gpg_key }}"
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: "Add Atom repo for Debian distros"
+  become: True
+  apt_repository:
+    repo: "{{ atom_repo }}"
+    state: present
+    filename: atom
+  when: ansible_os_family == "Debian"
+
+- name: "Add Atom repo for Red Hat Distros"
+  become: True
+  yum_repository:
+    name: atom
+    baseurl: "{{ atom_repo }}"
+    enabled: True
+    gpgcheck: False
+    description: 'Atom repository'
+  when: ansible_os_family == "RedHat"
+
+- name: "Install Atom"
+  become: True
+  package:
+    name: atom
+    state: present
