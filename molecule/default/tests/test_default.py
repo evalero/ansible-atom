@@ -7,5 +7,9 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 
 def test_atom_installed(host):
-    f = host.file('/bin/atom')
+    if (str(host.system_info.distribution) == 'debian' or
+            str(host.system_info.distribution) == 'ubuntu'):
+        f = host.file('/usr/bin/atom')
+    else:
+        f = host.file('/bin/atom')
     assert f.exists

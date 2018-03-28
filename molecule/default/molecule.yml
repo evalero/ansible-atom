@@ -10,6 +10,8 @@ platforms:
     image: centos:7
   - name: ubuntu-atom
     image: ubuntu:xenial
+  - name: debian-atom
+    image: debian:stretch
 provisioner:
   name: ansible
   lint:
