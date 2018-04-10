@@ -1,0 +1,3 @@
+.molecule
+.pytest_cache
+*.pyc
