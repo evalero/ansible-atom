@@ -9,15 +9,15 @@ galaxy_info:
   min_ansible_version: 2.2
 
   platforms:
-  - name: CentOS
-    versions:
-      - 7
-  - name: Ubuntu
-    versions:
-      - xenial
-  - name: Debian
-    version:
-      - stretch
+    - name: CentOS
+      versions:
+        - 7
+    - name: Ubuntu
+      versions:
+        - xenial
+    - name: Debian
+      version:
+        - stretch
 
   galaxy_tags: [IDE, atom]
 

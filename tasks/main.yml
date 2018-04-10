@@ -11,21 +11,21 @@
   when: ansible_os_family == "Debian"
 
 - name: Add atom gpg-key for Debian distros
-  become: True
+  become: true
   apt_key:
     url: "{{ gpg_key }}"
     state: present
   when: ansible_os_family == "Debian"
 
 - name: Add atom gpg-key for Red Hat distros
-  become: True
+  become: true
   rpm_key:
     key: "{{ gpg_key }}"
     state: present
   when: ansible_os_family == "RedHat"
 
 - name: "Add Atom repo for Debian distros"
-  become: True
+  become: true
   apt_repository:
     repo: "{{ atom_repo }}"
     state: present
@@ -33,17 +33,17 @@
   when: ansible_os_family == "Debian"
 
 - name: "Add Atom repo for Red Hat Distros"
-  become: True
+  become: true
   yum_repository:
     name: atom
     baseurl: "{{ atom_repo }}"
-    enabled: True
-    gpgcheck: False
+    enabled: true
+    gpgcheck: false
     description: 'Atom repository'
   when: ansible_os_family == "RedHat"
 
 - name: "Install Atom"
-  become: True
+  become: true
   package:
     name: atom
     state: present
