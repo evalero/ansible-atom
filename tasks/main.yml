@@ -22,6 +22,7 @@
   rpm_key:
     key: "{{ gpg_key }}"
     state: present
+    validate_certs: "{{ rpm_validate_key }}"
   when: ansible_os_family == "RedHat"
 
 - name: "Add Atom repo for Debian distros"
