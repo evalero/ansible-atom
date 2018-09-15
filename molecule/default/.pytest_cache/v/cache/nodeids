@@ -1,4 +1,0 @@
-[
-  "tests/test_default.py::test_atom_installed[ansible://centos-atom]", 
-  "tests/test_default.py::test_atom_installed[ansible://ubuntu-atom]"
-]
